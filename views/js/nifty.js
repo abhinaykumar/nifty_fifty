@@ -9,17 +9,8 @@ function displayList() {
     });
 }
 
-function getNiftyData() {
-    $.get('/new?_=' + new Date().getTime(), function(){
-    })
-    .always(function () {
-        setTimeout(getNiftyData, 300000);
-    });
-}
-
 $(document).ready(function () {
     displayList();
-    getNiftyData();
 })
 
 function update_list(data) {
@@ -28,8 +19,6 @@ function update_list(data) {
     $("#stockList").html("");
     var projectClass = 0;
     for(var key in jdata){
-      var symbol = jdata[key]["symbol"];
-      var companyDetails = getCompanyDetails(symbol);
       if(projectClass == 5){ projectClass = 0;}
       var card = '<div class="col-xs-3"><div class="project project-'+ projectClass +'"><div class="shape"><div class="shape-text">'+
                   jdata[key]["symbol"] + '</div></div><div class="project-content"><h3 class="lead">' +
@@ -41,12 +30,17 @@ function update_list(data) {
                   '</li><li><b>Last Corp Announcement:</b> '+ jdata[key]["lastCorpAnnouncement"]+'</li></ul></div></div></div>';
 
       $("#stockList").append(card);
-      var a = JSON.stringify(companyDetails);
-      console.log(a["responseText"]);
       projectClass += 1;
     }
     $("#time").html(data["time"]);
 }
+
+// for(var key in jdata){
+//   var symbol = jdata[key]["symbol"];
+//   var companyDetails = getCompanyDetails(symbol);
+//   var a = JSON.stringify(companyDetails);
+//   console.log(a["responseText"]);
+// }
 
 function getCompanyDetails(symbol){
   var details = $.ajax({

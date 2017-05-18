@@ -18,13 +18,6 @@ class NiftyFifty(object):
 		return json_response
 
 	@cherrypy.expose
-	def new(self, _):
-		r = redis.StrictRedis(host='localhost', port=6379)
-		response = requests.get('https://www.nseindia.com/live_market/dynaContent/live_analysis/gainers/niftyGainers1.json')
-		r.set('nifty', response.text)
-		return None
-
-	@cherrypy.expose
 	def logo(self, _, symbol):
 		company_details = requests.get("https://www.nseindia.com/live_market/dynaContent/live_watch/get_quote/companySnapshot/getContactDetails"+symbol+".json")
 		dict_reponse = ast.literal_eval(company_details.text)
