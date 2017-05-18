@@ -32,7 +32,7 @@ class NiftyFifty(object):
 		return web_address
 
 cherrypy.config.update({'server.socket_host': '0.0.0.0',
-                        'server.socket_port': 8080,
+                        'server.socket_port': 8280,
                        })
 cherrypy.quickstart(NiftyFifty(), "/", { "/views": {
                         "tools.staticdir.on": True,
