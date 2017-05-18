@@ -5,7 +5,7 @@ function displayList() {
         update_list(data);
     })
     .always(function () {
-        setTimeout(displayList, 30000);
+        setTimeout(displayList, 360000);
     });
 }
 
@@ -13,7 +13,7 @@ function getNiftyData() {
     $.get('/new?_=' + new Date().getTime(), function(){
     })
     .always(function () {
-        setTimeout(getNiftyData, 50000);
+        setTimeout(getNiftyData, 300000);
     });
 }
 
