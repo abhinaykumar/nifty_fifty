@@ -41,7 +41,7 @@ function update_list(data) {
       console.log(a["responseText"]);
       projectClass += 1;
     }
-    $("#time").html(data["time"])
+    $("#time").html(data["time"]);
 }
 
 function getCompanyDetails(symbol){
