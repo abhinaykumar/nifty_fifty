@@ -5,7 +5,7 @@ function displayList() {
         update_list(data);
     })
     .always(function () {
-        setTimeout(displayList, 360000);
+        setTimeout(displayList, 3000);
     });
 }
 
