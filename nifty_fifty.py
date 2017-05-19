@@ -13,15 +13,14 @@ class NiftyFifty(object):
 	@cherrypy.expose
 	def show(self, _):
 		r = redis.StrictRedis(host='localhost', port=6379)
-		nifty_list = r.get('nifty')
-		json_response = json.dumps(nifty_list)
-		return json_response
+		nifty_list = json.dumps(r.get('nifty'))
+		return nifty_list
 
 	@cherrypy.expose
 	def logo(self, _, symbol):
-		company_details = requests.get("https://www.nseindia.com/live_market/dynaContent/live_watch/get_quote/companySnapshot/getContactDetails"+symbol+".json")
-		dict_reponse = ast.literal_eval(company_details.text)
-		web_address = dict_reponse["rows"][0]["webAddress"]
+		r = redis.StrictRedis(host='localhost', port=6379)
+		web_address = r.get(symbol)
+		print web_address
 		return web_address
 
 cherrypy.config.update({'server.socket_host': '0.0.0.0',
